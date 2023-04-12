@@ -17,7 +17,6 @@ public class App {
 class Usuario{
         String Nome;
         int Idade;
-        int id;
 
         void cadastrar(){
             Scanner scanner = new Scanner(System.in);
@@ -25,17 +24,17 @@ class Usuario{
             Nome = scanner.nextLine();
             System.out.print("Digite a idade do usuario:\n");
             Idade = scanner.nextInt();
-            System.out.print("Digite o id do usuario:\n");
-            id = scanner.nextInt();
         }
 
         void gerarID(){
             Random random = new Random();
+            System.out.print("id:");
 
             for(int i = 1; i <= 6; i++){
                 int numero = random.nextInt(100) + 1;
-                System.out.print(numero + " ");
+                System.out.print(numero);
             }
+            System.out.print("\n");
         }
 }
 
@@ -44,6 +43,7 @@ class Cronometro{
 
     void Cronometro(){
         System.out.print("Digite o tempo desejado:\n");
+        Scanner scanner = new Scanner(System.in);
         tempoRestante = scanner.nextInt();
         
         System.out.print("Cronometro iniciado!");
@@ -51,7 +51,7 @@ class Cronometro{
         TimerTask task = new TimerTask(){
             public void run(){
                 if(tempoRestante > 0){
-                    System.out.print("Tempo restante: " + tempoRestante--);
+                    System.out.print("Tempo restante: " + tempoRestante-- + "\n");
                 }else{
                     System.out.print("Tempo esgotado!");
                     cancel();
