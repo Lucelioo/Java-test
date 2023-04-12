@@ -6,26 +6,26 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        usuario novoUsuario = new usuario;
-        cronometro cronometroUsuario = new cronometro;
+        usuario novoUsuario = new usuario();
+        cronometro cronometroUsuario = new cronometro();
         novoUsuario.gerarID();
         novoUsuario.cadastrar();
-        cronometroUsuario.Cronômetro();
+        cronometroUsuario.Cronometro();
     }
 }
 
 public class usuario{
-        String[] Nome;
+        String Nome;
         int Idade;
         int id;
 
         void cadastrar(){
             Scanner scanner = new Scanner(System.in);
-            System.out.print("Digite o nome do usuário:\n");
+            System.out.print("Digite o nome do usuario:\n");
             Nome = scanner.nextLine();
-            System.out.print("Digite a idade do usuário:\n");
+            System.out.print("Digite a idade do usuario:\n");
             Idade = scanner.nextInt();
-            System.out.print("Digite o id do usuário:\n");
+            System.out.print("Digite o id do usuario:\n");
             id = scanner.nextInt();
         }
 
@@ -42,11 +42,11 @@ public class usuario{
 public class cronometro{
     int tempoRestante;
 
-    void Cronômetro(){
-        System.out.print("Digite o tempo desejado:\n")
+    void Cronometro(){
+        System.out.print("Digite o tempo desejado:\n");
         tempoRestante = scanner.nextInt();
         
-        System.out.print("Cronômetro iniciado!");
+        System.out.print("Cronometro iniciado!");
 
         TimerTask task = new TimerTask(){
             public void run(){
@@ -61,5 +61,26 @@ public class cronometro{
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(task, 0, 1000);
+    }
+}
+
+public class listaEquip{
+    String[] Equipamento;
+    boolean disponibilidade;
+
+    void verificarDisponibilidade(){
+        if(disponibilidade == true){
+            System.out.print("Equipamento disponivel!");
+        }
+        else{
+            System.out.print("Equipamento nao disponivel");
+        }
+    }
+
+    void buscarEquipamento(String[] x){
+        Equipamento = x;
+        if(disponibilidade = true){
+            System.out.print("Equipamento encontrado: "+Equipamento);
+        }
     }
 }
