@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        usuario novoUsuario = new usuario();
-        cronometro cronometroUsuario = new cronometro();
+        Usuario novoUsuario = new Usuario();
+        Cronometro cronometroUsuario = new Cronometro();
         novoUsuario.gerarID();
         novoUsuario.cadastrar();
         cronometroUsuario.Cronometro();
     }
 }
 
-public class usuario{
+class Usuario{
         String Nome;
         int Idade;
         int id;
@@ -39,7 +39,7 @@ public class usuario{
         }
 }
 
-public class cronometro{
+class Cronometro{
     int tempoRestante;
 
     void Cronometro(){
@@ -64,7 +64,7 @@ public class cronometro{
     }
 }
 
-public class listaEquip{
+class listaEquip{
     String[] Equipamento;
     boolean disponibilidade;
 
