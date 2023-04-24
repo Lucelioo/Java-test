@@ -18,7 +18,7 @@ class Usuario{
         String Nome;
         int Idade;
 
-        void cadastrar(){
+        public void cadastrar(){
             Scanner scanner = new Scanner(System.in);
             System.out.print("Digite o nome do usuario:\n");
             Nome = scanner.nextLine();
@@ -26,7 +26,7 @@ class Usuario{
             Idade = scanner.nextInt();
         }
 
-        void gerarID(){
+        public void gerarID(){
             Random random = new Random();
             System.out.print("id:");
 
@@ -41,7 +41,7 @@ class Usuario{
 class Cronometro{
     int tempoRestante;
 
-    void Cronometro(){
+    public void Cronometro(){
         System.out.print("Digite o tempo desejado:\n");
         Scanner scanner = new Scanner(System.in);
         tempoRestante = scanner.nextInt();
@@ -68,7 +68,7 @@ class listaEquip{
     String[] Equipamento;
     boolean disponibilidade;
 
-    void verificarDisponibilidade(){
+    public void verificarDisponibilidade(){
         if(disponibilidade == true){
             System.out.print("Equipamento disponivel!");
         }
@@ -77,7 +77,7 @@ class listaEquip{
         }
     }
 
-    void buscarEquipamento(String[] x){
+    public void buscarEquipamento(String[] x){
         Equipamento = x;
         if(disponibilidade = true){
             System.out.print("Equipamento encontrado: "+Equipamento);
