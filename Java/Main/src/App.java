@@ -6,11 +6,14 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Usuario novoUsuario = new Usuario();
+        Usuario[] usuarios = new Usuario[3];
+
+        usuarios[0] = new Usuario("Menino Ney", 31);
+        usuarios[1] = new Usuario("Maria", 30);
+        usuarios[2] = new Usuario("Jose", 33);
+
+        usuarios[0].gerarID();
         Cronometro cronometroUsuario = new Cronometro();
-        novoUsuario.gerarID();
-        novoUsuario.cadastrar();
-        cronometroUsuario.Cronometro();
     }
 }
 
@@ -18,12 +21,11 @@ class Usuario{
         String Nome;
         int Idade;
 
-        public void cadastrar(){
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Digite o nome do usuario:\n");
-            Nome = scanner.nextLine();
-            System.out.print("Digite a idade do usuario:\n");
-            Idade = scanner.nextInt();
+        public Usuario(String nome, int idade){
+            this.Nome = nome;
+            this.Idade = idade;
+
+            System.out.print(nome + " " + idade + "\n");
         }
 
         public void gerarID(){
@@ -41,19 +43,28 @@ class Usuario{
 class Cronometro{
     int tempoRestante;
 
-    public void Cronometro(){
-        System.out.print("Digite o tempo desejado:\n");
+    public Cronometro(){
+        System.out.print("\nDigite o tempo desejado em horas, minutos e segundos:\n");
         Scanner scanner = new Scanner(System.in);
-        tempoRestante = scanner.nextInt();
+        int horas = scanner.nextInt();
+        int minutos = scanner.nextInt();
+        int segundos = scanner.nextInt();
+        
+        tempoRestante = horas * 3600 + minutos * 60 + segundos;
         
         System.out.print("Cronometro iniciado!");
 
         TimerTask task = new TimerTask(){
             public void run(){
                 if(tempoRestante > 0){
-                    System.out.print("Tempo restante: " + tempoRestante-- + "\n");
+                    int horas = tempoRestante / 3600;
+                    int minutos = (tempoRestante % 3600) / 60;
+                    int segundos = tempoRestante % 60;
+                    System.out.printf("Tempo restante: %02d:%02d:%02d", horas, minutos, segundos);
+                    
+                    tempoRestante--;
                 }else{
-                    System.out.print("Tempo esgotado!");
+                    System.out.println("Tempo esgotado!");
                     cancel();
                 }
             }
@@ -64,23 +75,41 @@ class Cronometro{
     }
 }
 
-class listaEquip{
-    String[] Equipamento;
-    boolean disponibilidade;
 
-    public void verificarDisponibilidade(){
-        if(disponibilidade == true){
-            System.out.print("Equipamento disponivel!");
-        }
-        else{
-            System.out.print("Equipamento nao disponivel");
-        }
+class ListaEquip {
+    private String nomeEquipamento;
+    private boolean disponibilidade;
+
+    public ListaEquip(String nomeEquipamento, boolean disponibilidade) {
+        this.nomeEquipamento = nomeEquipamento;
+        this.disponibilidade = disponibilidade;
     }
 
-    public void buscarEquipamento(String[] x){
-        Equipamento = x;
-        if(disponibilidade = true){
-            System.out.print("Equipamento encontrado: "+Equipamento);
+    public String getNomeEquipamento() {
+        return nomeEquipamento;
+    }
+
+    public void setNomeEquipamento(String nomeEquipamento) {
+        this.nomeEquipamento = nomeEquipamento;
+    }
+
+    public boolean isDisponibilidade() {
+        return disponibilidade;
+    }
+
+    public void setDisponibilidade(boolean disponibilidade) {
+        this.disponibilidade = disponibilidade;
+    }
+
+    public void verificarDisponibilidade(String equipamento) {
+        if (nomeEquipamento.equals(equipamento)) {
+            if (disponibilidade) {
+                System.out.println("O equipamento " + equipamento + " esta disponivel.");
+            } else {
+                System.out.println("O equipamento " + equipamento + " nao esta disponivel no momento.");
+            }
+        } else {
+            System.out.println("O equipamento " + equipamento + " nao foi encontrado na lista.");
         }
     }
 }
