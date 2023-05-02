@@ -11,8 +11,10 @@ public class App {
         usuarios[0] = new Usuario("Menino Ney", 31);
         usuarios[1] = new Usuario("Maria", 30);
         usuarios[2] = new Usuario("Jose", 33);
-
-        usuarios[0].gerarID();
+        
+        for(int i = 0; i<3;i++){
+            usuarios[i].gerarID();
+        }
         Cronometro cronometroUsuario = new Cronometro();
     }
 }
@@ -28,15 +30,17 @@ class Usuario{
             System.out.print(nome + " " + idade + "\n");
         }
 
-        public void gerarID(){
+        public void gerarID() {
             Random random = new Random();
             System.out.print("id:");
-
-            for(int i = 1; i <= 6; i++){
-                int numero = random.nextInt(100) + 1;
-                System.out.print(numero);
+            StringBuilder id = new StringBuilder();
+        
+            for(int i = 1; i <= 6; i++) {
+                int numero = random.nextInt(10);
+                id.append(numero);
             }
-            System.out.print("\n");
+        
+            System.out.print(id.substring(0, 6) + "\n");
         }
 }
 
@@ -60,7 +64,7 @@ class Cronometro{
                     int horas = tempoRestante / 3600;
                     int minutos = (tempoRestante % 3600) / 60;
                     int segundos = tempoRestante % 60;
-                    System.out.printf("Tempo restante: %02d:%02d:%02d", horas, minutos, segundos);
+                    System.out.printf("Tempo restante: %02d:%02d:%02d \n", horas, minutos, segundos);
                     
                     tempoRestante--;
                 }else{
