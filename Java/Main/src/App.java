@@ -15,7 +15,26 @@ public class App {
         for(int i = 0; i<3;i++){
             usuarios[i].gerarID();
         }
-        Cronometro cronometroUsuario = new Cronometro();
+        
+        //Cronometro cronometroUsuario = new Cronometro();
+
+        ListaEquip[] novaLista = new ListaEquip[3];
+
+        novaLista[0] = new ListaEquip("Computador", true);
+        novaLista[1] = new ListaEquip("Playstation", true);
+        novaLista[2] = new ListaEquip("Xbox", false);
+
+        novaLista[2].verificarDisponibilidade("Xbox");
+        
+        Caixa diaVenda = new Caixa(10);
+        
+        diaVenda.registrarVenda(10.5f);
+        diaVenda.registrarVenda(7.0f);
+        diaVenda.registrarVenda(5.5f);
+        
+        diaVenda.calcularReceita();
+        System.out.print("\n"+diaVenda.getReceita());
+
     }
 }
 
@@ -80,7 +99,7 @@ class Cronometro{
 }
 
 
-class ListaEquip {
+class ListaEquip{
     private String nomeEquipamento;
     private boolean disponibilidade;
 
@@ -115,5 +134,35 @@ class ListaEquip {
         } else {
             System.out.println("O equipamento " + equipamento + " nao foi encontrado na lista.");
         }
+    }
+}
+
+class Caixa{
+    private float[] venda;
+    private float receita;
+
+    public Caixa(int tamanhoArrayVenda) {
+        this.venda = new float[tamanhoArrayVenda];
+        this.receita = 0.0f;
+    }
+
+    public void registrarVenda(float valor) {
+        // adiciona o valor da venda no array de vendas
+        for (int i = 0; i < venda.length; i++) {
+            if (venda[i] == 0.0f) {
+                venda[i] = valor;
+                break;
+            }
+        }
+    }
+
+    public void calcularReceita() {
+        for (float valor : venda) {
+            receita += valor;
+        }
+    }
+
+    public float getReceita() {
+        return receita;
     }
 }
