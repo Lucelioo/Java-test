@@ -6,16 +6,12 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Usuario[] usuarios = new Usuario[3];
+        Usuario novoUsuario = new Usuario("Lucelio",19,"Lucelioo","1234");
+        novoUsuario.gerarID();
 
-        usuarios[0] = new Usuario("Menino Ney", 31);
-        usuarios[1] = new Usuario("Maria", 30);
-        usuarios[2] = new Usuario("Jose", 33);
-        
-        for(int i = 0; i<3;i++){
-            usuarios[i].gerarID();
-        }
-        
+        Sistema sistema = new Sistema();
+        sistema.exibirUsuarioAtual();
+
         //Cronometro cronometroUsuario = new Cronometro();
 
         ListaEquip[] novaLista = new ListaEquip[3];
@@ -39,15 +35,23 @@ public class App {
 }
 
 class Usuario{
-        String Nome;
-        int Idade;
+    String nome;
+    int idade;
+    String login;
+    String senha;
 
-        public Usuario(String nome, int idade){
-            this.Nome = nome;
-            this.Idade = idade;
+    public Usuario(String nome, int idade, String login, String senha) {
+        this.nome = nome;
+        this.idade = idade;
+        this.login = login;
+        this.senha = senha;
+    }
 
-            System.out.print(nome + " " + idade + "\n");
-        }
+    public void exibirDados() {
+        System.out.println("Nome: " + nome);
+        System.out.println("Idade: " + idade);
+        System.out.println("Login: " + login);
+    }
 
         public void gerarID() {
             Random random = new Random();
@@ -58,9 +62,24 @@ class Usuario{
                 int numero = random.nextInt(10);
                 id.append(numero);
             }
-        
             System.out.print(id.substring(0, 6) + "\n");
         }
+}
+
+class Sistema{
+    Usuario usuarioAtual;
+
+    public void criarUsuario(String nome, int idade, String login, String senha) {
+        usuarioAtual = new Usuario(nome, idade, login, senha);
+    }
+
+    public void exibirUsuarioAtual() {
+        if (usuarioAtual != null) {
+            usuarioAtual.exibirDados();
+        } else {
+            System.out.println("Nenhum usuario criado no momento.");
+        }
+    }
 }
 
 class Cronometro{
